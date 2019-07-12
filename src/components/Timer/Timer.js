@@ -37,6 +37,7 @@ const Timer = () => {
   );
 
   const completeTimer = () => {
+    timerAlert.current.play();
     if (timerState === timerStates.session) setTimerState(timerStates.break);
     else setTimerState(timerStates.session);
   };
