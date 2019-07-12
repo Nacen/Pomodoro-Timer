@@ -36,7 +36,7 @@ const TimerDisplay = ({timerState, timeLeft}) => {
     <Section>
       <TimerLabel id="timer-label">{timerState} </TimerLabel>
       <TimeLeft id="time-left">
-        {`${timeLeft.get("minutes")}:${leftPad(timeLeft.get("seconds"))}`}
+        {`${leftPad(timeLeft.get("minutes"))}:${leftPad(timeLeft.get("seconds"))}`}
       </TimeLeft>
     </Section>
   );

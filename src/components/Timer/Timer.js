@@ -57,7 +57,7 @@ const Timer = () => {
 
   useEffect(() => {
     if (isRunning) {
-      document.title = `Pomodoro ${timeLeft.get("minutes")}:${leftPad(
+      document.title = `Pomodoro ${leftPad(timeLeft.get("minutes"))}:${leftPad(
         timeLeft.get("seconds")
       )}`;
     }
