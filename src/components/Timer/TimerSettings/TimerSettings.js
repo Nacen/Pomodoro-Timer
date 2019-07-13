@@ -33,14 +33,12 @@ const Length = styled.span`
 `;
 
 const TimerSettings = ({
+  isRunning,
   sessionLength,
   breakLength,
   setSessionLength,
-  setBreakLength,
-  isRunning
+  setBreakLength
 }) => {
-  
-
   return (
     <Div>
       <H3>Timer Settings</H3>
