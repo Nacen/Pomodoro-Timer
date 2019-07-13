@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faStop, faUndoAlt } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../StyledComponents/Button";
+import moment from 'moment';
 
 const Div = styled.div`
   margin: 10px 10%;
@@ -32,7 +33,10 @@ const TimerControls = ({
   setSessionLength,
   setBreakLength,
   setTimerState,
-  setIsRunning
+  setIsRunning,
+  timerAlert,
+  setTimeLeft,
+  sessionLength
 }) => (
   <Div>
     <StartStopButton
@@ -49,6 +53,10 @@ const TimerControls = ({
         setSessionLength(25);
         setBreakLength(5);
         setTimerState("Session");
+        setTimeLeft(moment.duration(sessionLength, "minutes"));
+        timerAlert.current.pause();
+        timerAlert.current.currentTime = 0;
+        timerAlert.current.pause();
       }}
     >
       <ResetButton icon={faUndoAlt} size="4x" />
