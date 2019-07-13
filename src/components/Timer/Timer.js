@@ -43,12 +43,18 @@ const Timer = () => {
   };
 
   useEffect(() => {
-    if (timerState === "Session") {
+    if (timerState === "Session")
       setTimeLeft(moment.duration(sessionLength, "minutes"));
-    } else if (timerState === "Break") {
+    // } else if (timerState === "Break") {
+    //   setTimeLeft(moment.duration(breakLength, "minutes"));
+    // }
+  }, [sessionLength, timerState]);
+
+  useEffect(() => {
+    if (timerState === "Break") {
       setTimeLeft(moment.duration(breakLength, "minutes"));
     }
-  }, [sessionLength, timerState, breakLength]);
+  }, [breakLength, timerState]);
 
   const leftPad = val => {
     if (val < 10) return `0${val}`;
@@ -57,9 +63,11 @@ const Timer = () => {
 
   useEffect(() => {
     if (isRunning) {
-      document.title = `Pomodoro ${leftPad(timeLeft.get("minutes"))}:${leftPad(
-        timeLeft.get("seconds")
-      )}`;
+      if (timeLeft.get("hour") === 1) document.title = "60:00";
+      else
+        document.title = `Pomodoro ${leftPad(
+          timeLeft.get("minutes")
+        )}:${leftPad(timeLeft.get("seconds"))}`;
     }
   }, [timeLeft, isRunning]);
 
@@ -72,10 +80,11 @@ const Timer = () => {
         setBreakLength={setBreakLength}
         setSessionLength={setSessionLength}
         setTimerState={setTimerState}
+        timerAlert={timerAlert}
+        setTimeLeft={setTimeLeft}
+        sessionLength={sessionLength}
       />
       <TimerSettings
-        timerState={timerState}
-        setTimeLeft={setTimeLeft}
         isRunning={isRunning}
         sessionLength={sessionLength}
         breakLength={breakLength}
