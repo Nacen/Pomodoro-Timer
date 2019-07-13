@@ -26,17 +26,21 @@ const TimeLeft = styled.div`
   align-self: center;
 `;
 
-const leftPad = (val) => {
+const leftPad = val => {
   if (val < 10) return `0${val}`;
   return `${val}`;
-}
+};
 
-const TimerDisplay = ({timerState, timeLeft}) => {
+const TimerDisplay = ({ timerState, timeLeft }) => {
   return (
     <Section>
       <TimerLabel id="timer-label">{timerState} </TimerLabel>
       <TimeLeft id="time-left">
-        {`${leftPad(timeLeft.get("minutes"))}:${leftPad(timeLeft.get("seconds"))}`}
+        {timeLeft.get("hour") === 1
+          ? "60:00"
+          : `${leftPad(timeLeft.get("minutes"))}:${leftPad(
+              timeLeft.get("seconds")
+            )}`}
       </TimeLeft>
     </Section>
   );
